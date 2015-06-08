@@ -1,0 +1,8 @@
+<center>
+<table>
+	<tr><td>Preguntas que coinciden con la búsqueda:</td></tr>
+	<% var i; for (i=0; i < quizes.length; i++){ %>
+		<tr><td><li><a href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></li></td></tr>
+	<% } %>
+</table>
+</center>
