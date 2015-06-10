@@ -1,0 +1,19 @@
+<center>
+<table>
+<tr><td align="right"><label for="preg" class="rem">Pregunta: </label></td>
+<td><input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/><p></td></tr>
+<tr><td align="right"><label for="resp" class="rem">Respuesta: </label></td>
+<td><input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/><p></td></tr>
+<tr><td align="right"><label for="tema" class="rem">Tema: </label></td>
+<td><select name="quiz[tema]">
+  <option value="otro" selected>Otro</option>
+  <option value="humanidades">Humanidades</option>
+  <option value="ocio">Ocio</option>
+  <option value="ciencia">Ciencia</option>
+  <option value="tecnologia">Tecnología</option>
+</select></td></tr>
+<br>
+<tr><td></td><td><a href="/quizes"><button type="button">Cancelar</button></a>
+<input type="submit" value="Salvar"></td>
+</table>
+</center>

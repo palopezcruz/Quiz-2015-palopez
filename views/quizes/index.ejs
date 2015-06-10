@@ -1,5 +1,28 @@
+<h2>Lista de preguntas</h2>
+<hr><br>
+<table>
+<% var i; for ( i = 0; i < quizes.length; i++) { %>
+	<tr>
+		<td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+		<td><a href="quizes/<%= quizes[i].id %>/edit"><button> editar </button<</a></td>
+		<td>
+			<form method="post" action="/quizes/<%= quizes[i].id %>?_method=delete">        
+			<button type="submit" onClick="return confirm('¿Borrar [<%= quizes[i].pregunta %>]?');"> borrar </button>
+			</form>
+		</td>
+	</tr>
+<% } %>
+<!--
 <form method="get" action="/quizes">        
   Buscar preguntas que contengan: 
   <input type="text" name="search" value="Buscar"/>
   <input type="submit" value="Enviar">
 </form>	
+-->
+</table><p><p>
+<table>
+<h2>Crear nuevas preguntas</h2>
+<hr>
+<br>
+<a href="/quizes/new"><button type="button"> Crear pregunta </button></a>
+</table>
