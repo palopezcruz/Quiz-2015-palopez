@@ -54,37 +54,3 @@ exports.publish = function(req, res){
 };
 
 
-// GET /quizes/statistics
-exports.show = function(req, res){
-    var statistics = { numPreguntas: '--', numComentarios: '--', promComentarios: '--', sinComentarios: '--', conComentarios: '--', noPublicados: '--' };
-
-	// Numero de preguntas	
-    models.sequelize.query('SELECT count(*) AS n FROM "Quizzes"')
-		.then(function(cuenta) { 
-			statistics.numPreguntas = cuenta[0].n;
-			//Numero de comentarios
-			models.sequelize.query('SELECT count(*) AS n FROM "Comments"')
-				.then(function(cuenta) { 
-					statistics.numComentarios = cuenta[0].n;
-					if( +statistics.numPreguntas > 0) {
-						statistics.promComentarios = cuenta[0].n / statistics.numPreguntas; 
-						// Numero de preguntas con comentario
-						models.sequelize.query('SELECT count(*) AS n FROM "Quizzes" WHERE "id" IN (SELECT DISTINCT "QuizId" FROM "Comments")')
-							.then(function(cuenta) {
-								statistics.conComentarios = cuenta[0].n;
-								statistics.sinComentarios = +statistics.numPreguntas - cuenta[0].n;
-								// Numero de comentarios no publicados
-								models.sequelize.query('SELECT count(*) AS n FROM "Comments" WHERE NOT "publicado"')
-									.then(function(cuenta) {
-										statistics.noPublicados = cuenta[0].n;
-										res.render('statistics/show.ejs', {statistics: statistics, errors: []});
-									});
-							});
-					};
-				});
-			});	
-};
-
-
-
-	
